@@ -4,6 +4,7 @@ using MagazinAranjamenteFlorale.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MagazinAranjamenteFlorale.Migrations
 {
     [DbContext(typeof(MagazinAranjamenteFloraleContext))]
-    partial class MagazinAranjamenteFloraleContextModelSnapshot : ModelSnapshot
+    [Migration("20230118094549_Offer")]
+    partial class Offer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,18 +62,35 @@ namespace MagazinAranjamenteFlorale.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Name")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Offer");
+                });
+
+            modelBuilder.Entity("MagazinAranjamenteFlorale.Models.OfferProduct", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<int>("OfferID")
+                        .HasColumnType("int");
 
                     b.Property<int>("ProductID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
+                    b.HasIndex("OfferID");
+
                     b.HasIndex("ProductID");
 
-                    b.ToTable("Offer");
+                    b.ToTable("OfferProduct");
                 });
 
             modelBuilder.Entity("MagazinAranjamenteFlorale.Models.Order", b =>
@@ -141,13 +160,21 @@ namespace MagazinAranjamenteFlorale.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("MagazinAranjamenteFlorale.Models.Offer", b =>
+            modelBuilder.Entity("MagazinAranjamenteFlorale.Models.OfferProduct", b =>
                 {
+                    b.HasOne("MagazinAranjamenteFlorale.Models.Offer", "Offer")
+                        .WithMany("OfferProducts")
+                        .HasForeignKey("OfferID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("MagazinAranjamenteFlorale.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Offer");
 
                     b.Navigation("Product");
                 });
@@ -180,6 +207,11 @@ namespace MagazinAranjamenteFlorale.Migrations
                     b.Navigation("Order");
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("MagazinAranjamenteFlorale.Models.Offer", b =>
+                {
+                    b.Navigation("OfferProducts");
                 });
 
             modelBuilder.Entity("MagazinAranjamenteFlorale.Models.Order", b =>

@@ -13,30 +13,63 @@
 <table class="table">
     <thead>
         <tr>
+            <th>#</th>
             <th>
                 @Html.DisplayNameFor(model => model.Order[0].Customer.CustomerName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Order[0].OrderDate)
             </th>
+            <th>Products</th>
+            <th>Total</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Order) {
-        <tr>
-            <td>
-                    @Html.DisplayFor(modelItem => item.Customer.CustomerName)
-            </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OrderDate)
-                </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @{
+            var i = 0;
+            foreach (var item in Model.Order) {
+                i++;
+                    <tr>
+                        <td>
+                            @i       
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.Customer.CustomerName)
+                        </td>
+                        
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderDate)
+                        </td>
+
+                        <td>
+                            @{
+                                foreach (var prod in item.OrderProducts)
+                                {
+                                <div>@prod.Product.Name</div>
+                            }
+                        }
+                    </td>
+
+                    <td>
+                        @{
+                            int sum = 0;
+                            foreach (var prod in item.OrderProducts) {
+                                sum += prod.Product.Price;
+                            }
+                            <div>
+                                @sum
+                            </div>
+                        }
+                    </td>
+
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                    </tr>
+            }
+        }
     </tbody>
 </table>

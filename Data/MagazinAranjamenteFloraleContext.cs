@@ -19,5 +19,7 @@ namespace MagazinAranjamenteFlorale.Data
         public DbSet<MagazinAranjamenteFlorale.Models.Customer> Customer { get; set; }
 
         public DbSet<MagazinAranjamenteFlorale.Models.Product> Product { get; set; }
+
+        public DbSet<MagazinAranjamenteFlorale.Models.Offer> Offer { get; set; }
     }
 }

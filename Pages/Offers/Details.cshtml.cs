@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MagazinAranjamenteFlorale.Data;
 using MagazinAranjamenteFlorale.Models;
 
-namespace MagazinAranjamenteFlorale.Pages.Orders
+namespace MagazinAranjamenteFlorale.Pages.Offers
 {
     public class DetailsModel : PageModel
     {
@@ -19,27 +19,25 @@ namespace MagazinAranjamenteFlorale.Pages.Orders
             _context = context;
         }
 
-      public Order Order { get; set; }
+      public Offer Offer { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Order == null)
+            if (id == null || _context.Offer == null)
             {
                 return NotFound();
             }
 
-            var order = await _context.Order
-                .Include(c => c.Customer)
-                .Include(p => p.OrderProducts).ThenInclude(p => p.Product)
+            var offer = await _context.Offer
+                .Include(p => p.Product)
                 .FirstOrDefaultAsync(m => m.ID == id);
-
-            if (order == null)
+            if (offer == null)
             {
                 return NotFound();
             }
             else 
             {
-                Order = order;
+                Offer = offer;
             }
             return Page();
         }

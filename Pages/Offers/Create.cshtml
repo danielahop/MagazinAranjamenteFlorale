@@ -1,0 +1,52 @@
+﻿@page
+@model MagazinAranjamenteFlorale.Pages.Offers.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Offer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Offer.Name" class="control-label"></label>
+                <input asp-for="Offer.Name" class="form-control" />
+                <span asp-validation-for="Offer.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Offer.ProductID" class="control-label"></label>
+                <select asp-for="Offer.ProductID" class="form-control" asp-items="ViewBag.Product"></select>
+                <span asp-validation-for="Offer.Product.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Offer.Discount" class="control-label"></label>
+                <input asp-for="Offer.Discount" class="form-control" />
+                <span asp-validation-for="Offer.Discount" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Offer.EndDate" class="control-label"></label>
+                <input asp-for="Offer.EndDate" class="form-control" />
+                <span asp-validation-for="Offer.EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
