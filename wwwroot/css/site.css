@@ -14,5 +14,50 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-image: url("pexels-artem-podrez-7232662.jpg");
+    background-size: cover;
+}
+
+nav{
+    background-color:#DCB239;
+}
+
+tr {
+    border-color: black !important;
+}
+
+    tr a {
+        color: #ffffed;
+        background-color: #752f22;
+        padding: 3px 7px;
+        text-decoration: none;
+    }
+
+.create-customer {
+    color: #752f22;
+    font-size: 14px;
+}
+
+.add-customer a, small {
+    font-size: 12px;
+    color: #752f22;
+}
+
+.btn-primary {
+    background-color: #752f22 ;
+    width: 100%;
+    border: none;
+}
+
+hr {
+    color: #752f22;
+}
+
+.red-color a {
+    color: #752f22;
+}
+
+.red-color, strong {
+    color: #752f22;
 }

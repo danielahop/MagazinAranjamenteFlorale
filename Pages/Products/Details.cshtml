@@ -5,33 +5,37 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Details <small>product</small></h1>
 
 <div>
-    <h4>Product</h4>
+  
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Product.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.Price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Product.Price)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.Stock)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Product.Stock)
-        </dd>
+
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-12">
+
+            <div class="row">
+                <div class="col-6">@Html.DisplayNameFor(model => model.Product.Name)</div>
+                <div class="col-6">@Html.DisplayFor(model => model.Product.Name)</div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-6">@Html.DisplayNameFor(model => model.Product.Price)</div>
+                <div class="col-6">@Html.DisplayFor(model => model.Product.Price)</div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-6">@Html.DisplayNameFor(model => model.Product.Stock)</div>
+                <div class="col-6">@Html.DisplayFor(model => model.Product.Stock)</div>
+            </div>
+
+
+        </div>
+        
+        
     </dl>
 </div>
-<div>
+<div class="red-color">
     <a asp-page="./Edit" asp-route-id="@Model.Product?.ID">Edit</a> |
     <a asp-page="./Index">Back to List</a>
 </div>
