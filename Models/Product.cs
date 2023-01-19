@@ -8,16 +8,16 @@ namespace MagazinAranjamenteFlorale.Models
     {
         public int ID { get; set; }
 
-        [Required, StringLength(150, MinimumLength = 3)]
 
+        [Required]
         public string Name { get; set; }
 
 
 
-        [Range(1, 10000)]
+        [Range(1, 1000)]
         public int Price { get; set; }
 
-        [Range(1, 1000)]
+        [Range(1, 100)]
         public int Stock { get; set; }
 
         

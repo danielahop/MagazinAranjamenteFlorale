@@ -25,6 +25,7 @@ namespace MagazinAranjamenteFlorale.Pages.Offers
         {
             if (_context.Offer != null)
             {
+                //se uita in baza de date, in tabelul Offer, si pune in Offer (lista de mai sus)
                 Offer = await _context.Offer
                     .Include(p => p.Product)
                     .ToListAsync();

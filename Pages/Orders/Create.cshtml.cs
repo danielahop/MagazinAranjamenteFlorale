@@ -44,7 +44,6 @@ namespace MagazinAranjamenteFlorale.Pages.Orders
             order.OrderProducts = new List<OrderProduct>();
             if (selectedProducts != null)
             {
-                order.OrderProducts = new List<OrderProduct>();
                 foreach (var prod in selectedProducts)
                 {
                     order.OrderProducts.Add(new OrderProduct

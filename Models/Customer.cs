@@ -8,11 +8,13 @@ namespace MagazinAranjamenteFlorale.Models
 
         [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage =
 "Numele trebuie sa inceapa cu majuscula (ex. Daniela sau Felicia Daniela)")]
+
         public string CustomerName { get; set; }
 
-        [Required, StringLength(150, MinimumLength = 3)]
+        [Required]
         public string CustomerAddress { get; set; }
 
+        [Required]
         public int CustomerPhoneNumber { get; set; }
         
         //public ICollection<Order>? Orders { get; set; }

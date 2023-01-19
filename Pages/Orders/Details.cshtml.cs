@@ -28,9 +28,11 @@ namespace MagazinAranjamenteFlorale.Pages.Orders
                 return NotFound();
             }
 
+            //selecteaza si populeaza toate comenzile din bde
             var order = await _context.Order
                 .Include(c => c.Customer)
                 .Include(p => p.OrderProducts).ThenInclude(p => p.Product)
+                //alege doar orderul specificat in get
                 .FirstOrDefaultAsync(m => m.ID == id);
 
             if (order == null)

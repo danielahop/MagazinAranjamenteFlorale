@@ -7,6 +7,7 @@ namespace MagazinAranjamenteFlorale.Models
     {
         public int ID { get; set; }
 
+
         [DataType(DataType.Date)]
         public DateTime OrderDate { get; set; }
 
