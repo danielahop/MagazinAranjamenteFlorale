@@ -35,7 +35,7 @@ namespace MagazinAranjamenteFlorale.Models
             }
 
             var selectedProductsMap = new HashSet<string>(selectedProducts);
-            var orderProducts = new HashSet<int>(Order.OrderProducts.Select(p => p.ID));
+            var orderProducts = new HashSet<int>(Order.OrderProducts.Select(p => p.ProductID));
 
             foreach(var prod in context.Product)
             {
